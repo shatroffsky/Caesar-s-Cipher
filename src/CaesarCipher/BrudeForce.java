@@ -1,17 +1,32 @@
 package CaesarCipher;
-
+import FileReaderOrWriter.FileBrudeForce;
 import static CaesarCipher.ConstantsForAlphabet.UK;
 import static CaesarCipher.ConstantsForAlphabet.ENG;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static CaesarCipher.ConstantsForAlphabet.ENG;
-import static CaesarCipher.ConstantsForAlphabet.UK;
+public class BrudeForce{
 
-public class BrudeForce {
+    public BrudeForce(Path file) {
+        try {
+            Path directory = Files.createDirectories(CreateDirectoryPath(file));
+            CreateFilesWithDecrypt(new FileBrudeForce(file, directory));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    public BrudeForce(){
-
+    public void CreateFilesWithDecrypt(FileBrudeForce decrypt){
+        if (decrypt.GetAlphabet().equals("UK")){
+            for (int i = 1; i <= UK.size(); i++) {
+                decrypt.DecrytpFileUA(i);
+            }
+        } else if (decrypt.GetAlphabet().equals("ENG")) {
+            for (int i = 1; i <= ENG.size(); i++) {
+                decrypt.DecrytpFileENG(i);
+            }
+        }
     }
 
     public Path CreateDirectoryPath(Path path) throws IOException {
@@ -28,6 +43,4 @@ public class BrudeForce {
         }
         return path.getParent().resolve(Path.of("[DECRYPTED_FILES_FOR_" + fileName + end + "]"));
     }
-
-
 }

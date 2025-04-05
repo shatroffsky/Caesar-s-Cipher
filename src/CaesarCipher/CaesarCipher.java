@@ -62,6 +62,37 @@ public class CaesarCipher {
         return result.toString();
     }
 
+    public String BrudeDecryptUA(String StringToDecrypt, int key) {
+        StringBuilder result = new StringBuilder();
+        for (char el : StringToDecrypt.toCharArray()){
+            if (inUK(el)){
+                result.append(UK.get((UK.indexOf(el) - (key % UK.size()) + UK.size()) % UK.size()));
+            } else {
+                result.append(el);
+            }
+        }
+        return result.toString();
+    }
+
+    public String BrudeDecryptENG(String StringToDecrypt, int key) {
+        StringBuilder result = new StringBuilder();
+        for (char el : StringToDecrypt.toCharArray()){
+            if (inENG(el)){
+                result.append(ENG.get((ENG.indexOf(el) - (key % ENG.size()) + ENG.size()) % ENG.size()));
+            } else {
+                result.append(el);
+            }
+        }
+        return result.toString();
+    }
+
+    public boolean inUK(char letter){
+        return UK.contains(letter);
+    }
+
+    public boolean inENG(char letter){
+        return ENG.contains(letter);
+    }
 }
 
 

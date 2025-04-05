@@ -32,6 +32,8 @@ public class GuiInConsole {
                 run = OptionA();
             } else if (option == 'b') {
                 run = OptionB();
+            } else if (option == 'c') {
+                run = MenuIfBruteForce();
             } else {
                 System.out.println("Sorry, you write wrong option, try again.");
             }
@@ -72,7 +74,7 @@ public class GuiInConsole {
     }
 
     public char Option(){
-        System.out.println("Choose your option:\n[a] Encrypt text | [b] Decrypt text | [e] Exit program");
+        System.out.println("Choose your option:\n[a] Encrypt text | [b] Decrypt text | [e] Exit program | [c] Brute_Force");
         return new Scanner(System.in).next().charAt(0);
     }
 
@@ -96,5 +98,11 @@ public class GuiInConsole {
                 file.DecrytpFileENG();
             }
         }
+    }
+
+    public boolean MenuIfBruteForce(){
+        System.out.println("Enter your path to file: ");
+        new BrudeForce(Path.of(new Scanner(System.in).nextLine()));
+        return Exit();
     }
 }

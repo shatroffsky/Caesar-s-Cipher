@@ -6,7 +6,7 @@ public class Runner {
 
     public Runner(String[] commands) {
         if (commands.length == 0){
-            new GuiInConsole();
+            new FrontEnd();
         } else {
             this.commands = commands;
             Run();

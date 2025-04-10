@@ -33,10 +33,16 @@ public class FrontEnd {
         createKeyField();
         setComponentSizes();
         addListeners();
-        jPanel.add(submit);
+        if (jPanel != null) {
+            jPanel.add(submit);
+        }
         Result();
-        jPanel.revalidate();
-        jPanel.repaint();
+        if (jPanel != null) {
+            jPanel.revalidate();
+        }
+        if (jPanel != null) {
+            jPanel.repaint();
+        }
     }
 
     public void Result(){

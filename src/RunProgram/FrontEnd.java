@@ -5,8 +5,6 @@ import FileReaderOrWriter.FileToDecrypt;
 import FileReaderOrWriter.FileToEncrypt;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.nio.file.Path;
 
 public class FrontEnd {
@@ -20,7 +18,7 @@ public class FrontEnd {
     private Path file;
     private JRadioButton encrypt, decrypt, brute;
     private JRadioButton uk, eng;
-    private JButton submit = new JButton("Submit");
+    private final JButton submit = new JButton("Submit");
 
     public FrontEnd(){
         initializeUI();
@@ -35,19 +33,20 @@ public class FrontEnd {
         createKeyField();
         setComponentSizes();
         addListeners();
-        jPanel.add(submit);
+        if (jPanel != null) {
+            jPanel.add(submit);
+        }
         Result();
-        jPanel.revalidate();
-        jPanel.repaint();
+        if (jPanel != null) {
+            jPanel.revalidate();
+        }
+        if (jPanel != null) {
+            jPanel.repaint();
+        }
     }
 
     public void Result(){
-        submit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                GetOption();
-            }
-        });
+        submit.addActionListener(_ -> GetOption());
     }
 
     public void GetOption(){
@@ -211,11 +210,11 @@ public class FrontEnd {
     }
 
     private void addListeners() {
-        encrypt.addActionListener(e -> Visibility(true));
-        decrypt.addActionListener(e -> Visibility(true));
-        brute.addActionListener(e -> Visibility(false));
+        encrypt.addActionListener(_ -> Visibility(true));
+        decrypt.addActionListener(_ -> Visibility(true));
+        brute.addActionListener(_ -> Visibility(false));
 
-        chooser.addActionListener(e -> openFileChooser());
+        chooser.addActionListener(_ -> openFileChooser());
     }
 
     private void Visibility(boolean isVisible) {
